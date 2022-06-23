@@ -1,13 +1,6 @@
 
 
 
-print("*******   *    *******   \n")
-print("  *       *    *         \n")
-#print("  *       *    *         \n")
-print("  *       *    *         \n")
-print("  *       *    *******   \n")
-
-
 
 def sum(a, b, c):
     return a + b + c
@@ -40,8 +33,7 @@ def checkWin(xState, zState):
             print("O Won the match")
             return 0
     return -1
-
-
+# code by varun banka 
 if __name__ == "__main__":
     xState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     zState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -62,5 +54,5 @@ if __name__ == "__main__":
             print("Match over")
             exit = input("apart from power key, press any key to exit \n")
             break
-
+# i have used py installer to make exe file
         turn = 1 - turn
