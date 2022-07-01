@@ -15,6 +15,7 @@ def printBoard(xState, zState):
     five = 'X' if xState[5] else ('O' if zState[5] else 5)
     six = 'X' if xState[6] else ('O' if zState[6] else 6)
     seven = 'X' if xState[7] else ('O' if zState[7] else 7)
+    # made by dev Varun
     eight = 'X' if xState[8] else ('O' if zState[8] else 8)
     print(f"{zero} | {one} | {two} ")
     print(f"--|---|---")
