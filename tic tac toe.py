@@ -15,6 +15,7 @@ def start():
         seven = 'X' if xState[7] else ('O' if zState[7] else 7)
         eight = 'X' if xState[8] else ('O' if zState[8] else 8)
         print(f"{zero} | {one} | {two} ")
+        # code by Dev Varun
         print(f"--|---|---")
         print(f"{three} | {four} | {five} ")
         print(f"--|---|---")
