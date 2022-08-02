@@ -2,9 +2,6 @@
   
 <h2> Here's a tic tac toe game made using python </h2>
 
-<h3>Build : </h3
-<h3>Source code :
-     https://gist.github.com/VarunBanka/9361931d3746690e16cf5ad715e50bcc </h3>
 
 <h4>Making exe file : </h4>
 
