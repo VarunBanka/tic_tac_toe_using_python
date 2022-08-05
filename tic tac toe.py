@@ -1,90 +1,102 @@
-def start():
+class Board:
+    def __init__(self):
+        self.boardState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-    def sum(a, b, c):
-        return a + b + c
-
-
-    def printBoard(xState, zState):
-        zero = 'X' if xState[0] else ('O' if zState[0] else 0)
-        one = 'X' if xState[1] else ('O' if zState[1] else 1)
-        two = 'X' if xState[2] else ('O' if zState[2] else 2)
-        three = 'X' if xState[3] else ('O' if zState[3] else 3)
-        four = 'X' if xState[4] else ('O' if zState[4] else 4)
-        five = 'X' if xState[5] else ('O' if zState[5] else 5)
-        six = 'X' if xState[6] else ('O' if zState[6] else 6)
-        seven = 'X' if xState[7] else ('O' if zState[7] else 7)
-        eight = 'X' if xState[8] else ('O' if zState[8] else 8)
-        print(f"{zero} | {one} | {two} ")
-        # code by Dev Varun
-        print(f"--|---|---")
-        print(f"{three} | {four} | {five} ")
-        print(f"--|---|---")
-        print(f"{six} | {seven} | {eight} ")
-
-
-    def checkWin(xState, zState):
-        wins = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
-        for win in wins:
-            if (sum(xState[win[0]], xState[win[1]], xState[win[2]]) == 3):
-                print("X Won the match")
-                return 1
-            if (sum(zState[win[0]], zState[win[1]], zState[win[2]]) == 3):
-                print("O Won the match")
-                return 0
-        return -1
-
-
-    if __name__ == "__main__":
-        xState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-        zState = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    def play(self):
         turn = 1  # 1 for X and 0 for O
         print("Welcome to Tic Tac Toe")
-        while (True):
-            printBoard(xState, zState)
-            if (turn == 1):
+        while True:
+            self.printBoard()
+            if turn == 1:
                 print("X's Chance")
-                value = int(input("Please enter a value: "))
-                xState[value] = 1
+                value = self.checkInput()
+                self.boardState[value] = "X"
             else:
                 print("O's Chance")
-                value = int(input("Please enter a value: "))
-                zState[value] = 1
-            cwin = checkWin(xState, zState)
-            if (cwin != -1):
+                value = self.checkInput()
+                self.boardState[value] = "O"
+
+            cwin = self.checkWin()
+            if cwin:
                 print("Match over")
                 break
 
-            turn = 1 - turn
+            turn = 0 if turn else 1
 
-start()
-def restart_and_exit():
-    print("do you want to restart ? \n")
-    restart = input("y/n \n")
+    def checkInput(self):
+        while True:
+            try:
+                value = int(input("Please enter a value: "))
+            except ValueError:
+                print("Please enter a valid value")
+                continue
+            if value > 9 or value < 0:
+                print("Please enter a valid value")
+                continue
+            break
+        return value
+
+    def printBoard(self):
+        print("---------")
+        for i in range(0, 9):
+            if i % 3 != 0:
+                print("|", end=" ")
+            if self.boardState[i] == "X":
+                print("X", end=" ")
+            elif self.boardState[i] == "O":
+                print("O", end=" ")
+            else:
+                print(i, end=" ")
+            if (i + 1) % 3 == 0:
+                print("\n---------")
+
+    def checkWin(self):
+        wins = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6],
+        ]
+
+        for win in wins:
+            if (
+                self.boardState[win[0]] == "X"
+                and self.boardState[win[1]] == "X"
+                and self.boardState[win[2]] == "X"
+            ):
+                print("X wins")
+                return True
+            elif (
+                self.boardState[win[0]] == "O"
+                and self.boardState[win[1]] == "O"
+                and self.boardState[win[2]] == "O"
+            ):
+                print("O wins")
+                return True
+
+        if 0 not in self.boardState:
+            print("Draw")
+            return True
+
+        return False
+
+
+if __name__ == "__main__":
+    Board().play()
+    while True:
+        print("Do you want to restart ? \n")
+        restart = input("y/n\n").lower()
+        if restart == "y" or restart == "n":
+            break
+
     if restart == "y":
-        start()
+        Board().play()
+
     if restart == "n":
         print("okay, exiting.....")
         print("end of program")
         exit()
-
-restart_and_exit()
-
-xyz_pro_plus = 1
-
-while (xyz_pro_plus < 2):
-    restart_and_exit()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
