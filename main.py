@@ -1,15 +1,16 @@
-from PyQt5.QtWidgets import QMessageBox, QFrame, QListWidget, QMenu, QLabel, QAction, QSlider, QApplication, QMainWindow, QPushButton
+from PyQt5.QtWidgets import QMessageBox, QLabel, QApplication, QMainWindow, QPushButton
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt, QRect
 import sys
+from modes.online_mp import Online_MP
 from modes.singleplayer import Singleplayer
-from modes.multiplayer import Multiplayer
+from modes.local_mp import Local_MP
 
 
 class Menu(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setGeometry(300, 300, 600, 375)
+        self.setGeometry(300, 300, 600, 400)
         self.setFixedSize(self.size())
         self.setWindowTitle("TicTacToe - Menu")
         self.UIComponents()
@@ -35,32 +36,34 @@ class Menu(QMainWindow):
         self.sp_btn.clicked.connect(self.singlePlayer)
 
         self.mp_btn = QPushButton(self)
-        self.mp_btn.setText("Multiplayer")
+        self.mp_btn.setText("Local Multiplayer")
         self.mp_btn.setGeometry(QRect(200, 175, 200, 50))
-        self.mp_btn.clicked.connect(self.multiPlayer)
+        self.mp_btn.clicked.connect(self.local_mp)
+
+        self.mp2_btn = QPushButton(self)
+        self.mp2_btn.setText("Online Multiplayer")
+        self.mp2_btn.setGeometry(QRect(200, 250, 200, 50))
+        self.mp2_btn.clicked.connect(self.online_mp)
 
         self.exit_btn = QPushButton(self)
         self.exit_btn.setText("Exit")
-        self.exit_btn.setGeometry(QRect(200, 250, 200, 50))
+        self.exit_btn.setGeometry(QRect(200, 325, 200, 50))
         self.exit_btn.clicked.connect(self.exit)
-
-    def listWidgetClicked(self, item):
-        if item.text() == "Single Player":
-            self.singlePlayer()
-        elif item.text() == "Multiplayer":
-            self.multiPlayer()
-        elif item.text() == "Exit":
-            self.exit()
 
     def singlePlayer(self):
         self.hide()
-        self.singlePlayer = Singleplayer()
-        self.singlePlayer.show()
+        self.win = Singleplayer()
+        self.win.show()
 
-    def multiPlayer(self):
+    def local_mp(self):
         self.hide()
-        self.multiPlayer = Multiplayer()
-        self.multiPlayer.show()
+        self.win = Local_MP()
+        self.win.show()
+
+    def online_mp(self):
+        self.hide()
+        self.win = Online_MP()
+        self.win.show()
 
     def exit(self):
         self.close()
