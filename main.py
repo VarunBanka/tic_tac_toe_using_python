@@ -31,7 +31,7 @@ class Menu(QMainWindow):
         self.undertitle.setGeometry(QRect(0, 50, 600, 50))
 
         self.sp_btn = QPushButton(self)
-        self.sp_btn.setText("Single Player")
+        self.sp_btn.setText("Singleplayer")
         self.sp_btn.setGeometry(QRect(200, 100, 200, 50))
         self.sp_btn.clicked.connect(self.singlePlayer)
 
