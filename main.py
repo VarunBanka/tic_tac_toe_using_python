@@ -2,9 +2,9 @@ from PyQt5.QtWidgets import QMessageBox, QLabel, QApplication, QMainWindow, QPus
 from PyQt5.QtGui import QFont
 from PyQt5.QtCore import Qt, QRect
 import sys
-from modes.online_mp import Online_MP
+from modes.online_menu import OnlineMenu
 from modes.singleplayer import Singleplayer
-from modes.local_mp import Local_MP
+from modes.local_mp import LocalMP
 
 
 class Menu(QMainWindow):
@@ -57,12 +57,12 @@ class Menu(QMainWindow):
 
     def local_mp(self):
         self.hide()
-        self.win = Local_MP()
+        self.win = LocalMP()
         self.win.show()
 
     def online_mp(self):
         self.hide()
-        self.win = Online_MP()
+        self.win = OnlineMenu()
         self.win.show()
 
     def exit(self):
