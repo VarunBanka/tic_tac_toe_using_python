@@ -4,7 +4,7 @@ from PyQt5.QtCore import QRect, Qt
 from functools import partial
 
 
-class Local_MP(QWidget):
+class LocalMP(QWidget):
     def __init__(self) -> None:
         super().__init__()
         self.setGeometry(300, 300, 600, 450)
