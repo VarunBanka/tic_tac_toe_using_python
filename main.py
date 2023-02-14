@@ -1,7 +1,10 @@
-import cv2
-import numpy as np
-from random import randint
-import time
+try:
+    import cv2
+    import numpy as np
+    from random import randint
+    import time
+except:
+	print("Requirments to run this software are not satisfied, please contact the developer by dropping a mail at bankavarun18@gmail.com")   
 
 class Block():
     def __init__(self, i, j):
@@ -15,6 +18,7 @@ class GUI():
     def __init__(self, windowName):
         self.windowName = windowName
         self.width, self.height = 500, 500
+        # code by varun banka, kusti420 & Soerensen Patrick
         self.menuHeight = 100
         self.image = np.zeros((self.height + self.menuHeight, self.width, 3), np.uint8)
         self.turn = 1
@@ -50,6 +54,7 @@ class GUI():
                 "Player " + str(2) + " Win" if self.turn != self.vsCom else "Computer Win")
         else:
             if not self.checkDraw():
+                # code by v a r u n b a n k a, k u s t i 4 2 0 & S o e r e n s e n P a t r i c k
                 string = ("Player " + str(
                     self.turn) + "'s Turn" if self.turn != self.vsCom else "Computer's Turn") if self.turn == 1 else (
                     "Player " + str(2) + "'s Turn" if self.turn != self.vsCom else "Computer's Turn")
@@ -61,6 +66,7 @@ class GUI():
         cv2.putText(self.image, "Esc - Exit", (10, self.height + 80), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
         string = "vs Computer" if self.vsCom == 0 else "vs Human"
         cv2.putText(self.image, "Space - " + string, (self.width // 2 + 10, self.height + 80), cv2.FONT_HERSHEY_SIMPLEX,
+                   # code by varun banka, kusti420 & Soerensen Patrick
                     0.5, (255, 255, 255), 1)
 
         if self.selected and not (self.checkWin() or self.checkDraw()):
@@ -90,6 +96,7 @@ class GUI():
                 if key == 27:
                     break
                 elif key == ord("r") or key == ord("R"):
+                    # code by varun banka, kusti420 & Soerensen Patrick
                     self.reset()
                 if key == ord(" ") and not (self.checkWin() or self.checkDraw()):
                     if self.vsCom:
@@ -109,6 +116,7 @@ class GUI():
                 self.blocks[1][2][0].value) or (
                 self.blocks[2][0][0].value is not None and self.blocks[2][0][0].value == self.blocks[2][1][0].value ==
                 self.blocks[2][2][0].value) or (
+            # code by varun banka, kusti420 & Soerensen Patrick
                 self.blocks[0][0][0].value is not None and self.blocks[0][0][0].value == self.blocks[1][0][0].value ==
                 self.blocks[2][0][0].value) or (
                 self.blocks[0][1][0].value is not None and self.blocks[0][1][0].value == self.blocks[1][1][0].value ==
@@ -143,6 +151,7 @@ class GUI():
             for block in blocks:
                 if block.value == None:
                     if self.computerWins(block):
+#                        # https://github.com/VarunBanka/tic_tac_toe_using_python
                         scoresList[block] = 50
                     elif self.playerWins(block):
                         scoresList[block] = -50
@@ -212,5 +221,5 @@ class GUI():
                     break
 
 
-game = GUI("TicTacToe by Varun, Kusti and  Soerensen")
+game = GUI("TicTacToe by Varun Banka, Kusti420 and Soerensen Patrick")
 game.mainLoop()
